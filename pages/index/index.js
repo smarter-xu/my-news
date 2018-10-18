@@ -4,51 +4,80 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    newsTypeList: [{
+        text: "国内",
+        value: "gn"
+      },
+      {
+        text: "国际",
+        value: "gj"
+      },
+      {
+        text: "财经",
+        value: "cj"
+      },
+      {
+        text: "娱乐",
+        value: "yl"
+      },
+      {
+        text: "军事",
+        value: "js"
+      },
+      {
+        text: "体育",
+        value: "ty"
+      },
+      {
+        text: "其他",
+        value: "other"
+      }
+    ],
+    newsList: [],
+    currentType: "gn",
   },
   //事件处理函数
   bindViewTap: function() {
     wx.navigateTo({
-      url: '../logs/logs'
+      url: '../detail/detail'
     })
   },
-  onLoad: function () {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
+  onLoad: function() {
+    this.getNewsList(this.data.currentType);
+  },
+  getNewsList(currentType, callback) {
+    wx.request({
+      url: 'https://test-miniprogram.com/api/news/list',
+      data: {
+        type: currentType
+      },
+      success: res => {
+        let result = res.data.result
+        // 解析日期，并转化为 mm:ss
+        for (let i = 0; i < result.length; i++) {
+          let date = new Date(result[i].date)
+          let hour = date.getHours()
+          let minutes = date.getMinutes()
+          hour = hour < 10 ? "0" + hour : hour
+          minutes = minutes < 10 ? "0" + minutes : minutes
+          result[i].date = hour + ":" + minutes;
         }
-      })
-    }
-  },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
+        this.setData({
+          newsList: result
+        })
+      },
+      complete: () => {
+        callback && callback()
+      }
     })
+  },
+  onBindTap(event) {
+    // 获取新闻类型，并刷新新闻列表
+    let currentType = event.target.id
+    this.getNewsList(currentType, () => {
+      this.setData({
+        currentType: currentType
+      })
+    });
   }
 })

@@ -1,21 +1,92 @@
 /**index.wxss**/
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.news-type-list{
+  display:flex;
+  height: 50rpx;  
+  background-color: #00BFFF;
+  padding-left:10rpx;
 }
 
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
+.news-type-item{
+    width: 120rpx;
+    align-items:center;    
+    padding-right: 20rpx;
+   
+}
+
+.type-selected{
+ color: white;
+}
+
+.type-unselected{
+ color: #DCDCDC;
+}
+
+.news-first{
+  position: relative;
+  height: 400rpx;
   margin: 20rpx;
-  border-radius: 50%;
 }
 
-.userinfo-nickname {
-  color: #aaa;
+.news-first-title{
+  padding-top: 220rpx;
+  margin: 20rpx;
+  color: white;
 }
 
-.usermotto {
-  margin-top: 200px;
+.news-first-desc{
+  color: grey;
+  font-size: 30rpx;
+  line-height: 40rpx;
+  display: flex;
+}
+
+.news-first-image{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.news-list{
+  position: relative;
+  display:list-item;
+  margin: 20rpx;
+}
+
+.news-item {
+  display: flex;
+  height: 200rpx;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.news-item-left{
+  display: block; 
+  width: 550rpx;
+}
+
+.news-item-right{
+  margin: 0rpx;
+}
+.news-item-image{
+  width: 190rpx;  
+  height: 190rpx;
+}
+
+.news-item-title{
+  height: 146rpx;
+}
+.news-item-desc{
+  color: grey;
+  font-size: 30rpx;
+  line-height: 60rpx;
+  display: flex;
+}
+
+.news-source{
+  width: 220rpx;
+}
+
+.news-date{
+  width: 70rpx;
 }
