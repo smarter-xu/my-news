@@ -1,1 +1,28 @@
 /* pages/detail/detail.wxss */
+.news_detail_wrapper {
+  padding: 20rpx;
+}
+.title {
+  font-size: 50rpx;
+  line-height: 60rpx;
+}
+.source {
+  font-size: 30rpx;
+}
+.date {
+  font-size: 30rpx;
+}
+.readCount {
+  font-size: 30rpx;
+}
+.content-item{
+  padding: 20 0rpx;
+}
+.content-strong{
+  font-size: 40rpx;
+  line-height: 50rpx;
+}
+.content-p{
+  font-size: 40rpx;
+  line-height: 50rpx;
+}

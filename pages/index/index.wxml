@@ -10,7 +10,7 @@
 </scroll-view>
 
 <!-- 热点新闻 -->
-<view class="news-first">
+<view id="{{newsList[0].id}}" bindtap="onTapNews" class="news-first" >
   <view class="news-first-title">{{newsList[0].title}}</view>
   <view class="news-first-desc">
     <view class="news-source">{{newsList[0].source}}</view>
@@ -21,7 +21,7 @@
 
 <!-- 新闻列表 -->
   <view class="news-list">
-    <view class="news-item" wx:for="{{newsList}}" wx:if="{{index > 0}}">
+    <view id="{{item.id}}" bindtap="onTapNews" class="news-item" wx:for="{{newsList}}" wx:if="{{index > 0}}">
       <view class="news-item-left">
         <view class="news-item-title">{{item.title}}</view>
         <view class="news-item-desc">

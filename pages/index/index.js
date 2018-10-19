@@ -79,5 +79,19 @@ Page({
         currentType: currentType
       })
     });
+  },
+  onPullDownRefresh() {
+    this.getNewsList(this.data.currentType, () => {
+      wx.stopPullDownRefresh()
+    })
+  },
+  onTapNews(event){
+    // 获取新闻id，跳转到详情页面
+    // console.log(event)
+    let newsId = event.currentTarget.id
+    // console.log(newsId)
+    wx.navigateTo({
+      url: '../detail/detail?id=' + newsId,
+    })
   }
 })
