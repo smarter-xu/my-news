@@ -1,14 +1,16 @@
 <!--pages/detail/detail.wxml-->
 <view class="news_detail_wrapper">
   <view class="title">{{title}}</view>
-  <view class="source">{{source}}</view>
-  <view class="date">{{date}}</view>
-  <view class="readCount">{{readCount}}</view>
+  <view class="desc">
+    <view class="source">{{source}}</view>
+    <view class="date">{{date}}</view>
+    <view class="readCount">阅读 {{readCount}}</view>
+  </view>
   <view class="content">
     <view class="content-item" wx:for="{{content}}">
       <strong class="content-strong" wx:if="{{item.type=='strong'}}">{{item.text}}</strong>
-      <p class="content-p"  wx:if="{{item.type=='p'}}">{{item.text}}</p>
-      <image  class="content-image" wx:if="{{item.type=='image'}}" src="{{item.src}}"></image>
+      <p class="content-p" wx:if="{{item.type=='p'}}">{{item.text}}</p>
+      <image class="content-image" wx:if="{{item.type=='image'}}" src="{{item.src}}"></image>
     </view>
   </view>
 </view>

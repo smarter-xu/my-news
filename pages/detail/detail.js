@@ -43,7 +43,6 @@ Page({
           readCount: result.readCount,
           content: result.content
         })
-        console.log(result.id)
       },
       complete: () => {
         callback && callback()

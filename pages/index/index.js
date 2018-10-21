@@ -1,7 +1,6 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
 Page({
   data: {
     newsTypeList: [{
@@ -60,7 +59,10 @@ Page({
           let minutes = date.getMinutes()
           hour = hour < 10 ? "0" + hour : hour
           minutes = minutes < 10 ? "0" + minutes : minutes
-          result[i].date = hour + ":" + minutes;
+          result[i].date = hour + ":" + minutes
+          if (!result[i].firstImage){
+            result[i].firstImage = "../../images/default.png"
+          }
         }
         this.setData({
           newsList: result
